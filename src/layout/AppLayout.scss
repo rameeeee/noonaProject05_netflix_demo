@@ -1,0 +1,61 @@
+.navbar {
+    max-width: 1020px;
+    margin: 0 auto;
+    padding: 20px 18px;
+    background: #000 !important;
+    .navbar-nav {
+        a {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 30px;
+            color: #fff;
+            text-decoration: none;
+            & + a {
+                margin-left: 20px;
+            }
+        }
+    }
+    .nav-link {
+        color: #fff;
+    }
+    .navbar-toggler {
+        margin: 0 -12px;
+        .navbar-toggler-icon {
+            background: url(../assets/images/btn_menu.svg);   
+            background-size: 30px 30px;
+            opacity: 0.9;
+        }
+    }
+    .form-control {
+        border: 0;
+    }
+    .btn_search {
+        background: rgb(229, 9, 20);
+        border: 1px solid rgb(229, 9, 20);
+    }
+   
+}
+
+.logo_wrap {
+    margin-right: 30px;
+    .logo {
+        width: 9.25rem;
+        height: 2.5rem;
+        color: rgb(229, 9, 20);
+        fill: currentColor;
+        display: block;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .navbar {
+        .navbar-nav {
+            a {
+                & + a {
+                    margin-left: 0
+                };
+            }
+        }
+    }
+}
