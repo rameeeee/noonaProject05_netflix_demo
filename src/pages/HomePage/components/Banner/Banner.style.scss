@@ -1,6 +1,7 @@
 .banner_wrap {
     position: relative;
     height: 56vh;
+    min-height: 500px;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -15,10 +16,19 @@
     }
 }
 
+.banner_content {
+    position: relative;
+    height: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
 .banner_text_area {
     position: absolute;
-    bottom: 20px;
     left: 20px;
+    bottom: 20px;
     color: #fff;
     max-width: 500px;
+    > p {
+        margin-bottom: 0;
+    }
 }

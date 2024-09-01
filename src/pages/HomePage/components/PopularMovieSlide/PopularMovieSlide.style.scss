@@ -1,0 +1,18 @@
+.movie_slide_area {
+    max-width: 1024px;
+    margin: 20px auto 0;
+    .main_title {
+        padding: 0 20px;
+    }
+}
+.carousel-container {
+    padding: 30px 0;
+    overflow: visible !important;
+    // height: 201px;
+}
+
+@media screen and (max-width: 1024px){
+    .carousel-container {
+        
+    }
+}
