@@ -1,3 +1,4 @@
+import './HomePage.style.scss'
 import React from 'react'
 import Banner from './components/Banner/Banner';
 import PopularMovieSlide from './components/PopularMovieSlide/PopularMovieSlide';
@@ -8,7 +9,7 @@ import PopularMovieSlide from './components/PopularMovieSlide/PopularMovieSlide'
 // 4. upcoming movie
 const HomePage = () => {
     return (
-        <div className="homepag_wrap">
+        <div className="homepage_wrap">
             <Banner />
             <PopularMovieSlide />
         </div>
