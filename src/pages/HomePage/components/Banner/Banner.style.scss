@@ -1,0 +1,24 @@
+.banner_wrap {
+    position: relative;
+    height: 56vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background: linear-gradient(to top, black, transparent);
+    }
+}
+
+.banner_text_area {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: #fff;
+    max-width: 500px;
+}
