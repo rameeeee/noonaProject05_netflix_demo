@@ -4,6 +4,13 @@
     .main_title {
         padding: 0 20px;
     }
+    .react-multiple-carousel__arrow {
+        background: rgba(255, 255, 255, 0.8);
+        &::before {
+            font-weight: 700;
+            color: #000;
+        }
+    }
 }
 .carousel-container {
     padding: 30px 0;
@@ -11,8 +18,8 @@
     // height: 201px;
 }
 
-@media screen and (max-width: 1024px){
-    .carousel-container {
-        
-    }
+
+
+@media screen and (max-width: 464px){
+   
 }

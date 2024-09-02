@@ -1,0 +1,108 @@
+.movie_card_wrap {
+    position: relative;
+    height: 0;
+    padding-top: calc((431/287) * 100%);
+}
+
+.movie_card {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    bottom: 10px;
+    right: 10px;
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    transition: all 0.5s ease-in;
+    border-radius: 20px;
+    overflow: hidden;
+    &:hover {
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+    }
+    
+
+    .overlay {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;  
+        right: 0;
+        padding: 20px 10px;
+        background: rgba(43, 41, 41, 0.9);
+        opacity: 0;
+        transition: all .5s ease-out;
+        color: #fff;
+        font-weight: 700;
+        overflow-wrap: break-word;
+        &:hover {
+            opacity: 1;
+        }
+
+        .movie_title {
+            margin-top: auto;
+            font-weight: 700;
+            font-size: 16px;
+        }
+        .badge_area {
+            margin: 0 0 0 -4px;
+            .badge {
+                margin-left: 4px;
+            }
+        }
+        .info_area {
+            font-size: 12px;
+        }
+        .vote_average {
+            display: flex;
+            align-items: center;
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                margin-right: 4px;
+                background: url('../../assets/images/icon_star.png') 50% 50% no-repeat;
+                background-size: 12px auto;
+            }
+        }
+        .popular {
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                margin-right: 4px;
+                background: url('../../assets/images/icon_people.png') 50% 50% no-repeat;
+                background-size: 12px auto;
+            }
+        }
+    }
+
+    
+}
+
+@media screen and (max-width: 464px){
+    .movie_card {
+        .overlay {
+            padding: 20px;
+            .movie_title {
+                font-size: 18px;
+            }
+            .badge_area {
+                .badge {
+                    font-size: 15px;
+                }
+            }
+            .info_area {
+                font-size: 15px;
+            }
+        }   
+    }
+}

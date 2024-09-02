@@ -1,0 +1,16 @@
+.movie_page_wrap {
+    .pagination {
+        justify-content: center;
+        margin-top: 20px;
+        .active {
+            .page-link {
+                border: 1px solid rgba(299, 9, 20, 1);
+                background: rgba(299, 9, 20, 1);
+                color: rgba(255, 255, 255, 1);
+            }    
+        }
+        .page-link {
+            color: rgba(0, 0, 0, 0.8);
+        }
+    }
+}
