@@ -1,9 +1,11 @@
 import './MoviePage.style.scss';
 import React, {useState} from 'react'
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
+import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
+import { useAllMoviesQuery } from '../../hooks/useAllMovies'; 
 import { useSearchParams } from 'react-router-dom';
 import Alert from 'react-bootstrap/Alert';
-import {Container, Row, Col} from 'react-bootstrap';
+import {Container, Row, Col, Dropdown} from 'react-bootstrap';
 import MovieCard from '../../common/MovieCard/MovieCard';
 import ReactPaginate from 'react-paginate';
 
@@ -20,13 +22,46 @@ const MoviePage = () => {
     const [query, setQuery] = useSearchParams()
     const keyword = query.get("q")
     const [page, setPage] = useState(1);
-    const {data, isLoading, isError, error} = useSearchMovieQuery({keyword, page});
-    console.log('search data', data)
+    const [sortFilter, setSortFilter] = useState('정렬 기준');
+    const [genreFilter, setGenreFilter] = useState('장르별 보기');
+    const [selectedGenre, setSelectedGenre] = useState(''); // Track selected genre
+
+
+    const {data: movieData, isLoading, isError, error} = useSearchMovieQuery({keyword, page});
+    const { data: genres } = useMovieGenreQuery();
+    const { data: allMovies } = useAllMoviesQuery({keyword});
+    
+    console.log('search data', movieData)
 
     const handlePageClick = ({selected}) => {
         console.log('page', page)
         setPage(selected + 1)
     };
+    const handleFilterSort = (event) => {
+        setSortFilter(event.target.innerText)
+    }
+    const handleFilterGenre = (genre) => {
+        setGenreFilter(genre.name);
+        setSelectedGenre(genre.id);
+    };
+
+    const filteredMovies = () => {
+        let movies = selectedGenre
+            ? movieData?.results.filter(movie => movie.genre_ids.includes(selectedGenre))
+            : movieData?.results;
+
+        if (sortFilter === '인기 많은순') {
+            movies.sort((a, b) => b.popularity - a.popularity);
+        } else if (sortFilter === '인기 적은순') {
+            movies.sort((a, b) => a.popularity - b.popularity);
+        }
+
+        return movies;
+    }
+
+
+    console.log('allMovies', allMovies)
+
 
 
     if(isLoading) {
@@ -36,17 +71,53 @@ const MoviePage = () => {
         return <Alert variant="danger">{error.message}</Alert>
     }
 
+    const moviesToDisplay = filteredMovies();
+
     return (
         <div className="movie_page_wrap">
             <Container>
                 <Row>
-                    <Col lg={4} xs={12}>필터</Col>
-                    <Col lg={8} xs={12}>
+                    <Col xs={12}>
+                        <Row className='filter_menu_wrap'>
+                                <Dropdown className="dropdown_menu">
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic-sort">
+                                        {sortFilter}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        <Dropdown.Item onClick={handleFilterSort}>인기 많은순</Dropdown.Item>
+                                        <Dropdown.Item onClick={handleFilterSort}>인기 적은순</Dropdown.Item>
+                                    </Dropdown.Menu>
+                                    
+                                </Dropdown>
+                                <Dropdown className="dropdown_menu">
+                                    <Dropdown.Toggle variant="success" id="dropdown-basic-genre">
+                                        {genreFilter}
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu>
+                                        {genres.map(genre => (
+                                            <Dropdown.Item key={genre.id} onClick={() => handleFilterGenre(genre)}>
+                                                {genre.name}
+                                            </Dropdown.Item>
+                                        ))}
+                                        
+                                    </Dropdown.Menu>
+                                </Dropdown>
+
+                            
+                        </Row>
+                    </Col>
+                </Row>
+                <Row>
+                    
+                    <Col>
                         <Row>
-                            {data?.results.map((movie, index) => 
-                            <Col key={index} lg={4} xs={12}>
-                                <MovieCard movie={movie} />
-                            </Col>)}
+                            {moviesToDisplay.map((movie, index) => 
+                                <Col key={index} lg={3} xs={6}>
+                                    <MovieCard movie={movie} />
+                                </Col>)
+                            }
                         </Row>
                         <div className="pagination_wrap">
                             <ReactPaginate
@@ -54,7 +125,7 @@ const MoviePage = () => {
                                 onPageChange={handlePageClick}
                                 pageRangeDisplayed={2}
                                 marginPagesDisplayed={1}
-                                pageCount={data?.total_pages} // 전체페이지수
+                                pageCount={movieData?.total_pages} // 전체페이지수
                                 previousLabel="<"
                                 pageClassName="page-item"
                                 pageLinkClassName="page-link"

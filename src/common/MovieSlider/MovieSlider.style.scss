@@ -10,6 +10,12 @@
             font-weight: 700;
             color: #000;
         }
+        &:hover {
+            background: rgba(255, 255, 255, 0.8);
+            &::before {
+                color: rgb(229, 9, 20);
+            }
+        }
     }
 }
 .carousel-container {
