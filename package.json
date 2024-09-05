@@ -19,8 +19,10 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
+    "react-swiper": "^0.1.5",
     "react-youtube": "^10.1.0",
     "sass": "^1.77.8",
+    "swiper": "^11.1.12",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

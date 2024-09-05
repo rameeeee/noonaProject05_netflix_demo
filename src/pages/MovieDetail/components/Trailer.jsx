@@ -16,7 +16,6 @@ const TrailerModal = (props) => {
             autoplay: 1,
         },
     };
-
     const onReady = (event) => {
         event.target.pauseVideo();
     };
@@ -36,12 +35,8 @@ const TrailerModal = (props) => {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
                 <YouTube videoId={trailerData?.key} opts={opts} onReady={onReady} className="video_area"/>
             </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={props.onHide}>Close</Button>
-            </Modal.Footer>
         </Modal>
     );
 };
@@ -52,8 +47,8 @@ const Trailer = ({id}) => {
     console.log('trailer', trailerData)
     return (
         <div>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-                Launch vertically centered modal
+            <Button variant="primary" onClick={() => setModalShow(true)} className="btn_modal">
+                Watch In Modal
             </Button>
 
             <TrailerModal

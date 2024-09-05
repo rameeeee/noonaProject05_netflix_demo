@@ -113,11 +113,17 @@ const MoviePage = () => {
                     
                     <Col>
                         <Row>
-                            {moviesToDisplay.map((movie, index) => 
-                                <Col key={index} lg={3} xs={6}>
-                                    <MovieCard movie={movie} />
-                                </Col>)
-                            }
+                            {moviesToDisplay.length > 0 ? (
+                                moviesToDisplay?.map((movie, index) => (
+                                    <Col key={index} lg={3} xs={6}>
+                                        <MovieCard movie={movie} />
+                                    </Col>
+                                ))
+                            ) : (
+                                <Col xs={12}>
+                                    <div className="no_result">No results found.</div>
+                                </Col>
+                            )}
                         </Row>
                         <div className="pagination_wrap">
                             <ReactPaginate
