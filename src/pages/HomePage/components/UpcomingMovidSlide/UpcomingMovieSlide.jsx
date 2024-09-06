@@ -11,17 +11,19 @@ const UpcomingMovieSlide = () => {
     const {data, isLoading, isError, error} = useUpcomingMoviesQuery();
     console.log('upcoming data', data)
 
-    if(isLoading) {
-        <h1>Loading...</h1>
-    }
+    // if(isLoading) {
+    //     return <h1>Loading...</h1>
+    // }
     if(isError) {
-        <Alert variant="danger">{error.message}</Alert>
+        return <Alert variant="danger">{error.message}</Alert>
     }
-    return (
-        <>
-            <MovieSlider mainTitle="Upcoming Movies" movies={data?.results || []} responsive={responsive} />
-        </>
-    )
+    if(!isLoading) {
+        return (
+            <>
+                <MovieSlider mainTitle="Upcoming Movies" movies={data?.results || []} responsive={responsive} />
+            </>
+        )
+    }
 }
 
 export default UpcomingMovieSlide

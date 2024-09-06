@@ -1,4 +1,4 @@
-import './NotFoundPage.scss'
+import './NotFoundPage.style.scss'
 import React from 'react'
 import Lottie from "lottie-react";
 import loadingLottie from "../../assets/lottie/loading_lottie.json";

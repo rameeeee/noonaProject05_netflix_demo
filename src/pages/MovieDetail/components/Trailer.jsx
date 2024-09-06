@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './Trailer.scss';
+import './Trailer.style.scss';
 import { Button, Modal } from 'react-bootstrap';
 import YouTube from 'react-youtube';
 import { useMovieTrailerQuery } from '../../../hooks/useMovieTrailer';

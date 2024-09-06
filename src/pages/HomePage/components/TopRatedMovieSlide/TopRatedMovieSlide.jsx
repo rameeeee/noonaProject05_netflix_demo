@@ -12,17 +12,19 @@ const TopRatedMovieSlide = () => {
     console.log('top rated data', data)
     
     console.log('test data')
-    if(isLoading) {
-        <h1>Loading...</h1>
-    }
+    // if(isLoading) {
+    //     return <h1>Loading...</h1>
+    // }
     if(isError) {
-        <Alert variant="danger">{error.message}</Alert>
+        return <Alert variant="danger">{error.message}</Alert>
     }
-    return (
-        <>
-            <MovieSlider mainTitle="Top Rated Movies" movies={data?.results || []} responsive={responsive} />
-        </>
-    )
+    if(!isLoading) {
+        return (
+            <>
+                <MovieSlider mainTitle="Top Rated Movies" movies={data?.results || []} responsive={responsive} />
+            </>
+        )
+    }
 }
 
 export default TopRatedMovieSlide;

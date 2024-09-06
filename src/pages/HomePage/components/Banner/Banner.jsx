@@ -2,13 +2,14 @@ import React from 'react'
 import { usePopularMoviesQuery } from '../../../../hooks/usePopularMovies'
 import './Banner.style.scss'
 import Alert from 'react-bootstrap/Alert';
+import MovieLoading from '../../../../common/Loading/MovieLoading';
 
 const Banner = () => {
    const {data, isLoading, isError, error} = usePopularMoviesQuery()
    console.log('banner data', data)
 
    if(isLoading) {
-       return <h1>Loading...</h1>
+       return <MovieLoading />
    }
    if(isError) {
         return <Alert variant="danger">{error.message}</Alert>
